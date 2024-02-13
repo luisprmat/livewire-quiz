@@ -23,8 +23,11 @@ class QuestionForm extends Form
     public ?string $more_info_link = '';
 
     #[Validate([
-        'questionOptions' => ['required' , 'array'],
+        'questionOptions' => ['required', 'array'],
         'questionOptions.*.option' => ['required' , 'string'],
+    ], message: [
+        'questionOptions.required' => 'You must add answer options.',
+        'questionOptions.*.option.required' => 'The option #:position field must not be empty.',
     ])]
     public array $questionOptions = [];
 

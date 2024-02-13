@@ -70,7 +70,7 @@ class extends Component {
                         </div>
 
                         <div class="mt-4">
-                            <x-input-label for="question_options" value="Question options"/>
+                            <x-input-label for="question_options" :value="__('Question options')"/>
                             @foreach($form->questionOptions as $index => $questionOption)
                                 <div class="flex mt-2">
                                     <x-text-input type="text" wire:model="form.questionOptions.{{ $index }}.option" class="w-full" name="questions_options_{{ $index }}" id="questions_options_{{ $index }}" autocomplete="off"/>

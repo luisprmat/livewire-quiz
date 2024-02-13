@@ -209,6 +209,7 @@ return [
         'promo_code' => 'código promocional',
         'province' => 'provincia',
         'quantity' => 'cantidad',
+        'questionOptions' => 'opciones de respuesta',
         'question_text' => 'texto de la pregunta',
         'recaptcha_response_field' => 'respuesta del recaptcha',
         'remember' => 'recordar',
