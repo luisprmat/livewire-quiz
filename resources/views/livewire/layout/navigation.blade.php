@@ -115,7 +115,7 @@ new class extends Component
                 </div>
 
                 <div class="mt-3 space-y-1">
-                    <x-responsive-nav-link :href="route('questions')" wire:navigate>
+                    <x-responsive-nav-link :href="route('questions')" :active="request()->routeIs('questions*')" wire:navigate>
                         {{ __('Questions') }}
                     </x-responsive-nav-link>
                 </div>
@@ -128,7 +128,7 @@ new class extends Component
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile')" wire:navigate>
+                <x-responsive-nav-link :href="route('profile')" :active="request()->routeIs('profile')" wire:navigate>
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
