@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Livewire\Volt\Volt;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,16 @@ Route::view('dashboard', 'dashboard')
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Volt::route('questions', 'questions.list')
+        ->name('questions');
+
+    Volt::route('questions/create', 'questions.form')
+        ->name('questions.create');
+
+    Volt::route('questions/{question}', 'questions.form')
+        ->name('questions.edit');
+});
 
 require __DIR__.'/auth.php';
