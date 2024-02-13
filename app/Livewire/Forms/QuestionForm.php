@@ -22,11 +22,27 @@ class QuestionForm extends Form
     #[Validate('url|nullable')]
     public ?string $more_info_link = '';
 
+    #[Validate([
+        'questionOptions' => ['required' , 'array'],
+        'questionOptions.*.option' => ['required' , 'string'],
+    ])]
+    public array $questionOptions = [];
+
     public bool $editing = false;
 
     public function setQuestion(Question $question): void
     {
         $this->question = $question;
+
+        if ($question->exists) {
+            foreach ($question->questionOptions as $option) {
+                $this->questionOptions[] = [
+                    'id' => $option->id,
+                    'option' => $option->option,
+                    'correct' => $option->correct,
+                ];
+            }
+        }
 
         $this->question_text = $question->question_text;
 
@@ -35,5 +51,19 @@ class QuestionForm extends Form
         $this->answer_explanation = $question->answer_explanation;
 
         $this->more_info_link = $question->more_info_link;
+    }
+
+    public function addQuestionsOption(): void
+    {
+        $this->questionOptions[] = [
+            'option' => '',
+            'correct' => false
+        ];
+    }
+
+    public function removeQuestionsOption(int $index): void
+    {
+        unset($this->questionOptions[$index]);
+        $this->questionOptions = array_values(($this->questionOptions));
     }
 }
