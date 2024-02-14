@@ -24,7 +24,7 @@ class QuestionForm extends Form
 
     #[Validate([
         'questionOptions' => ['required', 'array'],
-        'questionOptions.*.option' => ['required' , 'string'],
+        'questionOptions.*.option' => ['required', 'string'],
     ], message: [
         'questionOptions.required' => 'You must add answer options.',
         'questionOptions.*.option.required' => 'The option #:position field must not be empty.',
@@ -60,7 +60,7 @@ class QuestionForm extends Form
     {
         $this->questionOptions[] = [
             'option' => '',
-            'correct' => false
+            'correct' => false,
         ];
     }
 
