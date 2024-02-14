@@ -11,7 +11,7 @@ class extends Component {
     public function with(): array
     {
         return [
-            'quizzes' => Quiz::latest()->paginate(),
+            'quizzes' => Quiz::withCount('questions')->latest()->paginate(),
         ];
     }
 
@@ -56,6 +56,9 @@ class extends Component {
                                         <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500 dark:text-gray-300">{{ __('Description') }}</span>
                                     </th>
                                     <th class="bg-gray-50 dark:bg-gray-600 px-6 py-3 text-left">
+                                        <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500 dark:text-gray-300">{{ __('Questions Count') }}</span>
+                                    </th>
+                                    <th class="bg-gray-50 dark:bg-gray-600 px-6 py-3 text-left">
                                         <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500 dark:text-gray-300">{{ __('Published') }}</span>
                                     </th>
                                     <th class="bg-gray-50 dark:bg-gray-600 px-6 py-3 text-left">
@@ -80,6 +83,9 @@ class extends Component {
                                         </td>
                                         <td class="px-6 py-4 text-sm leading-5 text-gray-900 dark:text-gray-100 whitespace-no-wrap">
                                             {{ $quiz->description }}
+                                        </td>
+                                        <td class="px-6 py-4 text-sm leading-5 text-gray-900 dark:text-gray-100 whitespace-no-wrap">
+                                            {{ $quiz->questions_count }}
                                         </td>
                                         <td class="px-6 py-4 text-sm leading-5 text-gray-900 dark:text-gray-100 whitespace-no-wrap">
                                             <x-checkbox disabled :checked="$quiz->published" />

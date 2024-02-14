@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Question;
 use App\Models\Quiz;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
@@ -33,8 +34,12 @@ class extends Component {
     #[Validate('array')]
     public array $questions = [];
 
+    public array $listsForFields = [];
+
     public function mount(Quiz $quiz): void
     {
+        $this->initListsForFields();
+
         if ($quiz->exists) {
             $this->quiz = $quiz;
             $this->editing = true;
@@ -43,6 +48,8 @@ class extends Component {
             $this->description = $quiz->description;
             $this->published = $quiz->published;
             $this->public = $quiz->public;
+
+            $this->questions = $quiz->questions()->pluck('id')->toArray();
         } else {
             $this->published = false;
             $this->public = false;
@@ -64,7 +71,14 @@ class extends Component {
             $this->quiz->update($this->only(['title', 'slug', 'description', 'published', 'public']));
         }
 
+        $this->quiz->questions()->sync($this->questions);
+
         return to_route('quizzes');
+    }
+
+    protected function initListsForFields(): void
+    {
+        $this->listsForFields['questions'] = Question::pluck('question_text', 'id')->toArray();
     }
 }; ?>
 
@@ -96,6 +110,12 @@ class extends Component {
                             <x-input-label for="description" :value="__('Description')" />
                             <x-textarea wire:model.defer="description" id="description" class="block mt-1 w-full" name="description" />
                             <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                        </div>
+
+                        <div class="mt-4">
+                            <x-input-label for="questions" value="Questions" />
+                            <x-select-list class="w-full" id="questions" name="questions" :options="$listsForFields['questions']" :selectedOptions="$questions" wire:model="questions" multiple />
+                            <x-input-error :messages="$errors->get('questions')" class="mt-2" />
                         </div>
 
                         <div class="mt-4">
