@@ -33,6 +33,15 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
     Volt::route('questions/{question}', 'questions.form')
         ->name('questions.edit');
+
+    Volt::route('quizzes', 'quizzes.list')
+        ->name('quizzes');
+
+    Volt::route('quizzes/create', 'quizzes.form')
+        ->name('quizzes.create');
+
+    Volt::route('quizzes/{quiz}', 'quizzes.form')
+        ->name('quizzes.edit');
 });
 
 require __DIR__.'/auth.php';
