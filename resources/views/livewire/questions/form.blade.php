@@ -65,7 +65,7 @@ class extends Component {
                     <form wire:submit.prevent="save">
                         <div>
                             <x-input-label for="question_text" :value="__('Question text')" />
-                            <x-textarea wire:model="form.question_text" id="question_text" class="block mt-1 w-full" name="question_text" />
+                            <x-textarea wire:model="form.question_text" id="question_text" class="block mt-1 w-full" name="question_text" required />
                             <x-input-error :messages="$errors->get('form.question_text')" class="mt-2" />
                         </div>
 
