@@ -113,8 +113,8 @@ class extends Component {
                         </div>
 
                         <div class="mt-4">
-                            <x-input-label for="questions" value="Questions" />
-                            <x-select-list class="w-full" id="questions" name="questions" :options="$listsForFields['questions']" :selectedOptions="$questions" wire:model="questions" multiple />
+                            <x-input-label for="questions" :value="__('Questions')" />
+                            <x-select-list id="questions" name="questions" :options="$listsForFields['questions']" :selectedOptions="$questions" wire:model="questions" multiple />
                             <x-input-error :messages="$errors->get('questions')" class="mt-2" />
                         </div>
 
