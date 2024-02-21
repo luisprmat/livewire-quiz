@@ -1,4 +1,4 @@
-<div class="mt-1 w-full">
+<div wire:ignore class="mt-1 w-full">
     <select class="w-full" {{ $attributes }}>
         @if(!isset($attributes['multiple']))
             <option></option>

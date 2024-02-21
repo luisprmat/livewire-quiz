@@ -17,6 +17,8 @@ use Livewire\Volt\Volt;
 
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
+Route::get('quiz/{quiz}/{slug?}', [HomeController::class, 'show'])
+    ->name('quiz.show');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
