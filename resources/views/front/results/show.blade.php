@@ -35,6 +35,45 @@
         </div>
     </div>
 
+    @if ($users)
+        <div class="pt-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <h6 class="text-xl font-bold">{{ __('Leaderboard') }}</h6>
+
+                        <div class="mb-4 min-w-full overflow-hidden overflow-x-auto align-middle">
+                            <table class="table mt-4 w-full">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="text-left">{{ __('Username') }}</th>
+                                        <th class="text-left">{{ __('Correct answers') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white dark:bg-gray-800">
+                                    @forelse($users as $user)
+                                        <tr @class(['bg-slate-100 dark:bg-slate-900' => auth()->user() && auth()->user()->name == $user->name])>
+                                            <td class="w-9">{{ $loop->iteration }}</td>
+                                            <td class="w-1/2">{{ $user->name }}</td>
+                                            <td>{{ $user->correct }} / {{ $total_questions }}
+                                                ({{ __('time: :time minutes', ['time' => intval($user->time_spent / 60).':'. gmdate('s', $user->time_spent) ]) }})
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="3" class="text-center bg-slate-100 dark:bg-slate-900">{{ __('No results.') }}</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
