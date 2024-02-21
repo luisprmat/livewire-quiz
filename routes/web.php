@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ResultController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -19,6 +20,8 @@ Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 Route::get('quiz/{quiz}/{slug?}', [HomeController::class, 'show'])
     ->name('quiz.show');
+Route::get('results/{test}', [ResultController::class, 'show'])
+    ->name('results.show');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
