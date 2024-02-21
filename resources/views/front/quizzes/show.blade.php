@@ -16,7 +16,7 @@
                             </span>
                         </div>
                     @else
-                        The livewire component will go here
+                        <livewire:front.quizzes.show :quiz="$quiz" />
                     @endif
                 </div>
             </div>
