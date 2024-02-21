@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Test;
+use App\Models\TestAnswer;
 use Illuminate\View\View;
 
 class ResultController extends Controller
@@ -11,6 +12,10 @@ class ResultController extends Controller
     {
         $total_questions = $test->quiz->questions->count();
 
-        return view('front.results.show', compact('test', 'total_questions'));
+        $results = TestAnswer::where('test_id', $test->id)
+            ->with('question.questionOptions')
+            ->get();
+
+        return view('front.results.show', compact('test', 'total_questions', 'results'));
     }
 }
