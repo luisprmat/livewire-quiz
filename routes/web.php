@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -14,11 +15,8 @@ use Livewire\Volt\Volt;
 |
 */
 
-Route::view('/', 'welcome');
-
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::get('/', [HomeController::class, 'index'])
+    ->name('home');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
