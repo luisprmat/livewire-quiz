@@ -7,6 +7,7 @@
 
         <!-- Favicon -->
         <link rel="icon" href="/favicon.ico">
+        <link rel="icon" href="/favicon_dark.ico" media="(prefers-color-scheme: dark)">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
