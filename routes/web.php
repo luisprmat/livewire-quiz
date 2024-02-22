@@ -22,6 +22,8 @@ Route::get('quiz/{quiz}/{slug?}', [HomeController::class, 'show'])
     ->name('quiz.show');
 Route::get('results/{test}', [ResultController::class, 'show'])
     ->name('results.show');
+Volt::route('leaderboard', 'front.leaderboard')
+    ->name('leaderboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('results', [ResultController::class, 'index'])

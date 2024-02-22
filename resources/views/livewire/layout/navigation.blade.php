@@ -30,6 +30,9 @@ new class extends Component
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('leaderboard')" :active="request()->routeIs('leaderboard')" wire:navigate>
+                        {{ __('Leaderboard') }}
+                    </x-nav-link>
                     @auth
                         <x-nav-link :href="route('results.index')" :active="request()->routeIs('results*')">
                             {{ __('My Results') }}
@@ -116,8 +119,11 @@ new class extends Component
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('leaderboard')" :active="request()->routeIs('leaderboard')" wire:navigate>
+                {{ __('Leaderboard') }}
+            </x-responsive-nav-link>
             @auth
-                <x-responsive-nav-link :href="route('results.index')" :active="request()->routeIs('results*')" wire:navigate>
+                <x-responsive-nav-link :href="route('results.index')" :active="request()->routeIs('results*')">
                     {{ __('My Results') }}
                 </x-responsive-nav-link>
             @endauth
