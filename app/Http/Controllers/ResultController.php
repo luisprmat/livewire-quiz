@@ -10,6 +10,13 @@ use Illuminate\View\View;
 
 class ResultController extends Controller
 {
+    public function index(): View
+    {
+        $results = Test::with('quiz')->withCount('questions')->where('user_id', auth()->id())->paginate();
+
+        return view('front.results.index', compact('results'));
+    }
+
     public function show(Test $test): View
     {
         $test->load('user', 'quiz');

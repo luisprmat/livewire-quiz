@@ -23,9 +23,13 @@ Route::get('quiz/{quiz}/{slug?}', [HomeController::class, 'show'])
 Route::get('results/{test}', [ResultController::class, 'show'])
     ->name('results.show');
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+Route::middleware('auth')->group(function () {
+    Route::get('results', [ResultController::class, 'index'])
+        ->name('results.index');
+
+    Route::view('profile', 'profile')
+        ->name('profile');
+});
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Volt::route('questions', 'questions.list')

@@ -40,8 +40,8 @@ class extends Component {
                         </x-button-link>
                     </div>
 
-                    <div class="mb-4 min-w-full overflow-hidden overflow-x-auto align-middle sm:rounded-md">
-                        <table class="min-w-full border dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-500">
+                    <div class="mb-4 min-w-full overflow-hidden overflow-x-auto align-middle sm:rounded-md border dark:border-gray-600">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-500">
                             <thead>
                                 <tr>
                                     <th class="w-16 bg-gray-50 dark:bg-gray-600 px-6 py-3 text-left">
